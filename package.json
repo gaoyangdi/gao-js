@@ -1,0 +1,22 @@
+{
+  "name": "gao-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gaoyangdi/gao-js.git"
+  },
+  "author": "gaoyangdi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gaoyangdi/gao-js/issues"
+  },
+  "homepage": "https://github.com/gaoyangdi/gao-js#readme"
+}
+
+
+
