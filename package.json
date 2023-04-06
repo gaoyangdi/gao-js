@@ -1,5 +1,5 @@
 {
-  "name": "gao-js",
+  "name": "gaoyangdi",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -17,6 +17,3 @@
   },
   "homepage": "https://github.com/gaoyangdi/gao-js#readme"
 }
-
-
-
