@@ -1,5 +1,5 @@
 import * as XLSX from '../xlsx/xlsx.js' // Vue3 版本
-
+import * as JsZip from '../jszip/dist/jszip.js' // Vue3 版本
  const exportExcel = (name, head, date, dow) => {
   const list = date.map(item => {
     const obj = {}
@@ -32,9 +32,6 @@ import * as XLSX from '../xlsx/xlsx.js' // Vue3 版本
     XLSX.writeFile(wb, name + '.xlsx')
   }
 
-
-
-
 }
 // 将字符串转 ArrayBuffer
  const strToBuf = (s) => {
@@ -46,7 +43,7 @@ import * as XLSX from '../xlsx/xlsx.js' // Vue3 版本
   }
   return buf
 }
- const openDownloadDialog = (blob, fileName) => {
+ const creatorDownload = (blob, fileName) => {
   if (typeof blob === 'object' && blob instanceof Blob) {
     blob = URL.createObjectURL(blob) // 创建blob地址}
     var aLink = document.createElement('a')
@@ -63,10 +60,83 @@ import * as XLSX from '../xlsx/xlsx.js' // Vue3 版本
   }
 }
 
+const creatorFile = (file,name,obj) => {
+    return new File([file],name,obj)
+}
+
+const fileZIP = async (file) => { 
+  var new_zip = new JSZip();
+  const zipFile = await new_zip.loadAsync(file)
+  return Object.values(zipFile.files)
+}
+
+const openFile = async () => {
+  let fileHandle;
+      [fileHandle] = await window.showOpenFilePicker();
+        const file = await fileHandle.getFile()
+        return {
+          handle: fileHandle,
+          file:file
+        }
+}
+
+/**
+ * 
+ * @param {(text)} 写入的文本
+ * @param {type} 写入的类型accept: {
+                "text/plain": [".txt"],
+            }
+ *
+ */
+const saveFile=async (text,type)=>{
+         const options = {
+           types: [type],
+            };
+            const handle = await window.showSaveFilePicker(options);
+            const writable = await handle.createWritable();
+            await writable.write(text);
+            await writable.close();
+            return true
+  
+}
+/**
+ *  @param {(handle)} 保存的句柄文件  如果有，没有另存为
+ * @param {(text)} 写入的文本
+ * @param {type} 写入的类型accept: {
+                "text/plain": [".txt"],
+            }
+ *
+ */
+const revampFile = async (handle, text, b,type) => {
+              if (handle) { 
+                var  file = await handle.getFile();
+                var writable = await handle.createWritable();
+                 if (b) {
+                const y = await file.text()
+                await writable.write(y + text);
+                } else { 
+                  await writable.write(text);
+                }
+                
+                await writable.close();
+              } else {
+                saveFile(text,type)
+              }
+       
+             
+            return true
+  
+}
+
 export { 
   exportExcel,
   strToBuf,
-  openDownloadDialog
+  creatorDownload,
+  creatorFile,
+  fileZIP,
+  openFile,
+  saveFile,
+  revampFile
 }
 
 

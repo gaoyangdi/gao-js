@@ -6,19 +6,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script type="module">
-        import { formatNumber, formatPercent, strSplit, strReplace, exportExcel } from "./index.js";
+    </head>
+    
+    <body>
+            <div id="aa" style="width: 500px; height: 400px; border: 1px solid  red; padding: 20px; overflow:auto;">
+                <div style="width: 30px; height: 1000px; background: yellow;"></div>
+            </div>
+            <textarea name="" id="text" cols="30" rows="10"></textarea>
+            <button id="openFile">getFile</button>
+            <button id="severFile">severFile</button>
+            <button id="revampFile">revampFile</button>
+            </body>
+            
+            </html>
+<script type="module">
+    import * as gao from "./index.js";
+    //gao.onKey(123)
+    console.log(gao.formatNumber(12.31, 4))
+    console.log(gao.formatPercent(0.2))
+    console.log(gao.strSplit("上海@上海市@闵行区@吴中路", "!"))
+    console.log(gao.strReplace("上海@上海市@闵行区@吴中路", "@"))
+    window.onload = async () => {
+        var aa = document.getElementById("openFile");
+        var bb = document.getElementById("severFile");
+        var cc = document.getElementById("revampFile");
+        var tt = document.getElementById("text");
+        var obj
+        var t = {
+            name: "Test files",
+            accept: {
+                "text/plain": [".txt"],
+            },
+        }
+        aa.onclick = async () => {
+            obj = await gao.openFile()
+            console.log(obj.file)
+            tt.value = await obj.file.text()
+        }
+        bb.onclick = async () => {
+            const file = await gao.openFile()
 
-        console.log(formatNumber(12.31, 4))
-        console.log(formatPercent(0.2))
-        console.log(strSplit("上海@上海市@闵行区@吴中路", "!"))
-        console.log(strReplace("上海@上海市@闵行区@吴中路", "@"))
-        exportExcel()
-    </script>
-</head>
+            gao.saveFile(await file.text(), t).then(res => {
+                alert(res)
+            })
+        }
+        cc.onclick = async () => {
+            gao.revampFile(false, tt.value, true, t)
+        }
 
-<body>
+        const funBottom = () => {
 
-</body>
+            console.log(0)
+        }
+        const funTop = () => {
+            console.log(1)
+        }
+        const funAll = () => {
+            console.log(132)
+        }
+        var a = document.getElementById('aa')
+        const funbbbbb = gao.onTableScroll(a, funBottom, funTop, funAll)
+        const onWidowScroll = gao.onWidowScroll(funBottom, funTop, funAll)
 
-</html>
+
+
+    }
+
+
+</script>
