@@ -27,8 +27,10 @@ export const onWidowScroll = index$4.onWidowScroll
 
 
 
-import  service from "./axios/index.js"
-export const axios =service  
+import { ajax } from "./axios/index.js"
+export const axios = ajax  
+
+
 
 
 
