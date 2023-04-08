@@ -6,15 +6,14 @@ const strReplace = (str,limit) => {
     return str.replace(limit,'')
 }
 
-function s2ab(s) {
-	if(typeof ArrayBuffer === 'undefined') return s2a(s);
-	var buf = new ArrayBuffer(s.length), view = new Uint8Array(buf);
-	for (var i=0; i!=s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
-	return buf;
+const ArrayBufferUTF8ToStr = (buffer, encoding = 'utf-8') => {
+  const decoder = new TextDecoder(encoding);
+  return decoder.decode(buffer);
 }
 
 
 export {
   strSplit,
-  strReplace
+  strReplace,
+  ArrayBufferUTF8ToStr
 }

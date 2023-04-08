@@ -32,8 +32,12 @@ Date.prototype.Format = function(fmt) {
 
 
 
- /*
- @formatDateSetHours 返回设置小时数
+ /**
+  * 格式化时间格式 能加减小时数
+ * @time 格式化的时间
+ * @numberHours 增加减小时数 
+ * @pattern 时间格式 yyyy-MM-dd hh:mm:ss
+ * @returns返回设置小时数 
  */
    const formatDateSetHours=(time, numberHours, pattern) => {
   if (time !== null && time !== '') {
@@ -46,8 +50,12 @@ Date.prototype.Format = function(fmt) {
 }
 
 
- /*
- @formatDateSetDay 返回设置天数
+ /**
+  * 格式化时间格式 能加减天数
+ * @time 格式化的时间
+ * @numberDay 增加减小天数
+ * @pattern 时间格式 yyyy-MM-dd hh:mm:ss
+ * @returns返回设置天数
  */
   const  formatDateSetDay =(time,numberDay,pattern) => {
   if (time !== null && time !== '') {
@@ -61,9 +69,9 @@ Date.prototype.Format = function(fmt) {
 
 /**
  * 数字千分位展示并显示n位小数
- * @param {(number | string)} 需要格式化的值
- * @param {number} [precision] 保留几位小数，不传小数不处理，不够会填充0
- * @return {(number | string)} 返回0或者格式化的值
+ * @num 需要格式化的值
+ * @string 保留几位小数，不传小数不处理，不够会填充0
+ * @return返回0或者格式化的值
  */
 const formatNumber = (num,precision) => {
   let parts;
@@ -87,8 +95,8 @@ const judgeIsNumber = (value) =>
 
 /**
  * 将值转换为百分数
- * @param value 任何值
- * @param precision 小数位
+ * @value 任何值
+ * @precision 小数位
  */
 function formatPercent(value, precision) {
   let result = '0';
