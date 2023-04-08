@@ -1,7 +1,7 @@
-export const ajax = (axios,e,Message) => { 
+export const ajax = (axios,e,baseURL,Message) => { 
   // 创建axios实例
     const service = axios.create({
-      baseURL: process.env.BASE_API,
+      baseURL:baseURL,
       timeout: 15000, // 请求超时时间
       // onUploadProgress: function (env) { 
       //   console.log(env)
@@ -21,8 +21,8 @@ export const ajax = (axios,e,Message) => {
         try { 
             Message.error({ message: "请求超时,请稍候再试..." });
             return Promise.reject(error);
-        } catch { 
-            console.log("Message:no")
+        } catch(err) { 
+            console.error(err+"Message-----no")
         } 
       }
     );
@@ -31,14 +31,16 @@ export const ajax = (axios,e,Message) => {
         //请求正常则返回
         let res = response.data;
         if (res.errno == '501') {
-          localStorage.clear()
-          Message.error(res.errmsg);
-          var time = setTimeout(function () {
-            location.replace('./')
-            clearTimeout(time)
-          }, 2000)
-
-
+          try { 
+            localStorage.clear()
+            Message.error(res.errmsg);
+            var time = setTimeout(function () {
+              location.replace('./')
+              clearTimeout(time)
+            }, 2000)
+        } catch (err){ 
+            console.error(err+"Message-----no")
+        } 
           return
         }
 
@@ -48,8 +50,8 @@ export const ajax = (axios,e,Message) => {
         try { 
             Message.error("网络链接失败,请稍候再试...");
             return Promise.reject(error);
-        } catch { 
-            console.log("Message:no")
+        } catch (err){ 
+           console.error(err+"Message-----no")
         } 
         
       }
