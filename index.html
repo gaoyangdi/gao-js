@@ -62,9 +62,8 @@
             })
         }
         cc.onclick = async () => {
-            var file = gao.creatorFile(ttt, "as.xls", { type: gao.fileType("xls"), lastModified: new Date() })
-            console.log(file)
-            gao.creatorDownload(file, "as.xls")
+            var file = gao.creatorFile(tt.value, "as.pdf", { type: gao.fileType("pdf"), lastModified: new Date() })
+            gao.creatorDownload(file, "as.pdf")
         }
 
         const funBottom = () => {
