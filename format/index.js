@@ -70,10 +70,11 @@ Date.prototype.Format = function(fmt) {
 /**
  * 数字千分位展示并显示n位小数
  * @num 需要格式化的值
- * @string 保留几位小数，不传小数不处理，不够会填充0
+ * @precision 保留几位小数，不传小数不处理，不够会填充0
+ * @qian 是否显示千分位 true或false
  * @return返回0或者格式化的值
  */
-const formatNumber = (num,precision) => {
+const formatNumber = (num,precision,qian) => {
   let parts;
   // 判断是否为数字
   if (!isNaN(parseFloat(num)) && isFinite(num) ){
@@ -84,7 +85,7 @@ const formatNumber = (num,precision) => {
     ).toString();
     // 分离数字的小数部分和整数部分
     parts = num.split('.');
-    parts[0] = parts[0].toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+   qian?parts[0] = parts[0].toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'):''
     return parts.join('.');
   }
   return 0;

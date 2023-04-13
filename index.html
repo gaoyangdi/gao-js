@@ -30,10 +30,15 @@
     import * as gao from "./index.js";
 
     //gao.onKey(123)
-                                            console.log(gao.formatNumber(1231, 4))
+
+    var arr = [{ id: 0, a: 123 }, { id: 1, a: 456 }, { id: 2, a: 789 }, { id: 0, a: 963 }, { id: 8, a: 2425 }]
+    console.log(gao.arrayWeight(arr, "id"))
+    console.log(gao.strWeight("bbsaaaaaasa"))
+    console.log(gao.randomString(8))
+    console.log(gao.formatNumber(1231111111.2, 1, true))
     console.log(gao.formatPercent(0.2))
-    console.log(gao.strSplit("上海@上海市@闵行区@吴中路", "!"))
-    console.log(gao.strReplace("上海@上海市@闵行区@吴中路", "@"))
+        console.log(gao.strSplit("上海@上海市@闵行区@吴中路", "@"))
+        console.log(gao.strReplace("上海 上海市 闵行区 吴中路", " "))
     window.onload = async () => {
         var aa = document.getElementById("openFile");
         var bb = document.getElementById("severFile");

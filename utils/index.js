@@ -1,4 +1,9 @@
-const onKey=(key) => {
+
+ /**
+  * 屏蔽某个键
+ * @key 键的cod  123F12
+ */
+const onKey = (key) => {
   setInterval(() => {
         debugger
       })
@@ -12,6 +17,16 @@ const onKey=(key) => {
         }
       }
 }
+
+
+/**
+  * 某个dom绑定滚动条事件
+ * @dom dom元素
+ * @funBottom 滚到低触发方法
+ * @funTop 滚到头触发方法
+ * @funAll 滚动中触发方法
+ * @return 返回监听的方法 用于解绑绑定的方法
+ */
 const onTableScroll = (dom, funBottom, funTop,funAll) => { 
       const fun = () => {
           var contentHeight = dom.scrollHeight
@@ -30,7 +45,13 @@ const onTableScroll = (dom, funBottom, funTop,funAll) => {
     return fun
 }
 
-
+/**
+  * 整个页面绑定滚动条事件
+ * @funBottom 滚到低触发方法
+ * @funTop 滚到头触发方法
+ * @funAll 滚动中触发方法
+ * @return 返回监听的方法 用于解绑绑定的方法
+ */
 const onWidowScroll = (funBottom, funTop,funAll) => { 
   const fun = () => {
           var contentHeight = document.documentElement.scrollHeight
@@ -49,12 +70,27 @@ const onWidowScroll = (funBottom, funTop,funAll) => {
     return fun
 }
 
+const arrayWeight = (result,limit) => {
 
+						var len=result.length
+						for(var i = 0; i < len; i++){
+							for(var j = i + 1; j < len; j++){
+								if(result[i][limit] == result[j][limit]){
+									result.splice(j,1);
+									len--;
+									j--;
+								}
+							}
+  }
+  return result
+}
 
 
 
 export { 
   onKey,
   onTableScroll,
-  onWidowScroll
+  onWidowScroll,
+  arrayWeight,
+  arraySort
 }
