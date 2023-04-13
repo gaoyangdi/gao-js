@@ -91,6 +91,5 @@ export {
   onKey,
   onTableScroll,
   onWidowScroll,
-  arrayWeight,
-  arraySort
+  arrayWeight
 }
