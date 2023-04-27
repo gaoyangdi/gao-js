@@ -13,7 +13,7 @@ export const ajax = (axios,e,baseURL,Message) => {
     service.interceptors.request.use(
     
       config => {
-        config.params = { timestamp: Date.now() };
+        config.params? config.params = Object.assign(config.params, {timestamp: Date.now()}): config.params = {timestamp: Date.now()}
         config.headers =e 
         return config;
       },
